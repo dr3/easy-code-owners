@@ -138,6 +138,8 @@ const run = async () => {
     info(`Hello`);
 
     warning('Ooooh!');
+
+    setFailed('Please request a review from @banana')
     
   } catch (error: unknown) {
     setFailed(ensureError(error));
