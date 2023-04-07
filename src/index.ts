@@ -4,6 +4,8 @@ import { context, getOctokit } from "@actions/github";
 // import type { PaginatingEndpoints } from "@octokit/plugin-paginate-rest";
 import type { PushEvent } from "@octokit/webhooks-definitions/schema.js";
 import ensureError from "ensure-error";
+import { getChangedFilePaths } from "./getChangedFilePaths.js";
+import { getRequiredCodeOwners } from "./getRequiredCodeowners.js";
 
 
 // const unupdatablePullRequestCommentBody =
@@ -127,20 +129,18 @@ const run = async () => {
     const token = getInput("github_token", { required: true });
     const octokit = getOctokit(token);
 
-    if (context.eventName !== "push") {
-      throw new Error(
-        `Expected to be triggered by a "push" event but received a "${context.eventName}" event`,
-      );
+    if (!['push', 'pull_request'].includes(context.eventName)) {
+      throw new Error(`Unexpected event: ${context.eventName}`)
     }
 
-    const eventPayload = context.payload as PushEvent;
+    const changedFilePaths = await getChangedFilePaths(context, octokit)
     
-    info(`Hello`);
+    info(`changedFilePaths ${JSON.stringify(changedFilePaths)}`);
 
-    warning('Ooooh!');
+    const requiredCodeOwners = await getRequiredCodeOwners(changedFilePaths)
 
-    setFailed('Please request a review from @banana')
-    
+    info(`requiredCodeOwners ${JSON.stringify(requiredCodeOwners)}`);
+
   } catch (error: unknown) {
     setFailed(ensureError(error));
   }

@@ -5,6 +5,9 @@ inputs:
   github_token:
     description: Token for the GitHub API.
     default: ${{ github.token }}
+  code_owners_path:
+    description: With to codeowners file
+    default: .github/CODEOWNERS
 runs:
   using: node16
   main: dist/index.js
