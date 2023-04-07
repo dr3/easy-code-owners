@@ -1,3 +1,4 @@
+import { info } from '@actions/core';
 import * as github from '@actions/github'
 import { Context } from '@actions/github/lib/context.js'
 
@@ -8,6 +9,9 @@ export async function getChangedFilePaths(
   // Note: the per_page param is set to the max value for a single page (100)
   // TODO: implement pagination to get all files if > 100
   // TODO: use graphql api
+
+  info(`context ${JSON.stringify(context)}`);
+
   const files = await client.rest.pulls.listFiles({
     owner: context.issue.owner,
     repo: context.issue.repo,
