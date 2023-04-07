@@ -1,6 +1,6 @@
-name: Auto-update
-author: Thibault Derousseaux <tibdex@gmail.com>
-description: Automatically keep pull requests with auto-merged enabled up to date with their base branch.
+name: Easy-code-owners
+author: Drew McMillan <hello@mcmill.co.uk>
+description: Have the safety of code owners without the notification headache
 inputs:
   github_token:
     description: Token for the GitHub API.
@@ -9,5 +9,5 @@ runs:
   using: node16
   main: dist/index.js
 branding:
-  icon: refresh-cw
-  color: blue
+  icon: lock
+  color: orange

@@ -1,6 +1,6 @@
 {
-  "name": "auto-update",
-  "version": "2.2.1",
+  "name": "easy-code-owners",
+  "version": "0.0.1",
   "license": "MIT",
   "type": "module",
   "files": [
