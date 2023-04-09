@@ -130,7 +130,7 @@ const run = async () => {
     const codeOwnersPath = getInput("code_owners_path", { required: true });
     const octokit = getOctokit(token);
 
-    if (!['push', 'pull_request'].includes(context.eventName)) {
+    if (!['pull_request_review', 'pull_request'].includes(context.eventName)) {
       throw new Error(`Unexpected event: ${context.eventName}`)
     }
 

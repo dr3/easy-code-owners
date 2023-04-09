@@ -1,6 +1,6 @@
 {
   "name": "quiet-code-owners",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "license": "MIT",
   "type": "module",
   "files": [
