@@ -10,8 +10,6 @@ export async function getChangedFilePaths(
   // TODO: implement pagination to get all files if > 100
   // TODO: use graphql api
 
-  info(`context ${JSON.stringify(context)}`);
-
   const files = await client.rest.pulls.listFiles({
     owner: context.issue.owner,
     repo: context.issue.repo,

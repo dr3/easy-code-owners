@@ -127,6 +127,7 @@ import { getRequiredCodeOwners } from "./getRequiredCodeowners.js";
 const run = async () => {
   try {
     const token = getInput("github_token", { required: true });
+    const codeOwnersPath = getInput("code_owners_path", { required: true });
     const octokit = getOctokit(token);
 
     if (!['push', 'pull_request'].includes(context.eventName)) {
@@ -137,7 +138,7 @@ const run = async () => {
     
     info(`changedFilePaths ${JSON.stringify(changedFilePaths)}`);
 
-    const requiredCodeOwners = await getRequiredCodeOwners(changedFilePaths)
+    const requiredCodeOwners = await getRequiredCodeOwners(changedFilePaths, codeOwnersPath)
 
     info(`requiredCodeOwners ${JSON.stringify(requiredCodeOwners)}`);
 

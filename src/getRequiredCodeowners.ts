@@ -1,7 +1,7 @@
 import CodeOwners from 'codeowners'
 
-export async function getRequiredCodeOwners(paths: string[]): Promise<string[]> {
-  const repos = new CodeOwners()
+export async function getRequiredCodeOwners(paths: string[], codeOwnersPath: string): Promise<string[]> {
+  const repos = new CodeOwners(process.cwd(), codeOwnersPath)
 
   let owners: string[] = [];
 
