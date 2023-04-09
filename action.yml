@@ -8,9 +8,18 @@ inputs:
   code_owners_path:
     description: With to codeowners file
     default: .github/CODEOWNERS
+
 runs:
-  using: node16
-  main: dist/index.js
+  using: "composite"
+  steps:
+    - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v35
+    - name: Banana
+      uses: node16
+      id: banana
+      run: dist/index.js
+
 branding:
   icon: lock
   color: orange
