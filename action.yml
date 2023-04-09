@@ -15,8 +15,11 @@ runs:
     - name: Get changed files
       id: changed-files
       uses: tj-actions/changed-files@v35
-    - run: dist/index.js
-      uses: node16
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16
+    - name: Stuff
+      uses: dist/index.js
 
 branding:
   icon: lock
