@@ -8,20 +8,9 @@ inputs:
   code_owners_path:
     description: With to codeowners file
     default: .github/CODEOWNERS
-
 runs:
-  using: "composite"
-  steps:
-    - name: Get changed files
-      id: changed-files
-      uses: jitterbit/get-changed-files@v1
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 16
-    - name: Stufff
-      run: node dist/index.js
-      shell: bash
-
+  using: node16
+  main: dist/index.js
 branding:
   icon: lock
   color: orange
